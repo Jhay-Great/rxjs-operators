@@ -18,11 +18,11 @@ export class AppComponent {
   constructor (
     private rxjsOperators: RxjsOperatorsService,
   ) {
-    this.ofOperator();
-    this.fromOperator();
-    this.intervalOperator();
-    this.combinedOperation();
-    this.error();
+    // this.ofOperator();
+    // this.fromOperator();
+    // this.intervalOperator();
+    // this.combinedOperation();
+    // this.error();
     
     // console.log('rxjs data: ', this.rxjsOperators.rxjsSubscription())
     // this.rxjsOperators.rxjsSubscription();
@@ -61,30 +61,34 @@ export class AppComponent {
   }
 
   intervalOperator () {
-    this.rxjsOperators.rxjsInterval().subscribe(
+    const subscription = this.rxjsOperators.rxjsInterval().subscribe(
       val => console.log(val),
       error => console.log(error.message),
       () => 'completed value emission'
-    )
+    );
+
+    // subscription.unsubscribe();
   }
 
   combinedOperation () {
-    this.rxjsOperators.concat().subscribe(
+    const subscription = this.rxjsOperators.concat().subscribe(
       val => console.log(val),
       error => console.log(error),
       () => console.log('completed...'),
-    )
+    );
+
+    subscription.unsubscribe();
   }
 
   error () {
-    this.rxjsOperators.errorHandler().subscribe(
+    const subscription = this.rxjsOperators.errorHandler().subscribe(
       val => console.log(val),
       error => console.error(error.message),
       () => ('finished emitting all the values'),
-    )
-  }
+    );
 
-  // emitRxjsData () {
-  //   console.log(this.rxjsOperators.rxjsSubscription())
-  // }
+    subscription.unsubscribe();
+  }
+  
+
 }
