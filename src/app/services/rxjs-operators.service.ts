@@ -31,6 +31,7 @@ export class RxjsOperatorsService {
     return interval(1000).pipe(take(5));
    }
 
+  // combines multiple observables into a single observable and emits that observable
    concat () {
     const colors$ = this.rxjsFrom();
     const numbers$ = this.rxjsOf();
