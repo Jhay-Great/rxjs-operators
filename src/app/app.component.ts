@@ -18,6 +18,7 @@ export class AppComponent {
     private rxjsOperators: RxjsOperatorsService,
   ) {
     this.ofOperator();
+    this.fromOperator();
     // console.log('rxjs data: ', this.rxjsOperators.rxjsSubscription())
     // this.rxjsOperators.rxjsSubscription();
     // this.emitRxjsData();
