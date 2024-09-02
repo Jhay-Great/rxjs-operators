@@ -42,6 +42,18 @@ export class AppComponent {
 
   }
 
+  // subscribes to the returned of observable and logs the emitted value, error and completed
+  // it also unsubscribes to the observable to prevent memory leaks
+  fromOperator () {
+    const subscription = this.rxjsOperators.rxjsFrom().subscribe(
+      value => console.log(value),
+      error => console.log(error.message),
+      () => console.log('completed...'),
+    )
+
+    subscription.unsubscribe();
+  }
+
   // emitRxjsData () {
   //   console.log(this.rxjsOperators.rxjsSubscription())
   // }
