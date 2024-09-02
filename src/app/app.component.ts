@@ -67,7 +67,7 @@ export class AppComponent {
       () => 'completed value emission'
     );
 
-    // subscription.unsubscribe();
+    // subscription.unsubscribe(); no need because of the take();
   }
 
   combinedOperation () {
@@ -89,6 +89,8 @@ export class AppComponent {
 
     subscription.unsubscribe();
   }
+
+
   
 
 }

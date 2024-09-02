@@ -27,6 +27,7 @@ export class RxjsOperatorsService {
 
   //  returns a stream of data every second
   // take operator is used to limit the number of values emitted from the interval observable
+  // the take operator automatically unsubscribes to the observable so there is no need to unsubscribe remember that
    rxjsInterval () {
     return interval(1000).pipe(take(5));
    }
