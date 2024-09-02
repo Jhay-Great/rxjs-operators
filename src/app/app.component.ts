@@ -3,6 +3,7 @@ import { RouterOutlet } from '@angular/router';
 
 // local module imports
 import { RxjsOperatorsService } from './services/rxjs-operators.service';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -19,6 +20,9 @@ export class AppComponent {
   ) {
     this.ofOperator();
     this.fromOperator();
+    this.intervalOperator();
+    
+    
     // console.log('rxjs data: ', this.rxjsOperators.rxjsSubscription())
     // this.rxjsOperators.rxjsSubscription();
     // this.emitRxjsData();
@@ -53,6 +57,22 @@ export class AppComponent {
     )
 
     subscription.unsubscribe();
+  }
+
+  intervalOperator () {
+    this.rxjsOperators.rxjsInterval().subscribe(
+      val => console.log(val),
+      error => console.log(error.message),
+      () => 'completed value emission'
+    )
+  }
+
+  combinedOperation () {
+    this.rxjsOperators.concat().subscribe(
+      val => console.log(val),
+      error => console.log(error),
+      () => console.log('completed...'),
+    )
   }
 
   // emitRxjsData () {
