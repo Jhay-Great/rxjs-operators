@@ -21,7 +21,8 @@ export class AppComponent {
     this.ofOperator();
     this.fromOperator();
     this.intervalOperator();
-    
+    this.combinedOperation();
+    this.error();
     
     // console.log('rxjs data: ', this.rxjsOperators.rxjsSubscription())
     // this.rxjsOperators.rxjsSubscription();
@@ -72,6 +73,14 @@ export class AppComponent {
       val => console.log(val),
       error => console.log(error),
       () => console.log('completed...'),
+    )
+  }
+
+  error () {
+    this.rxjsOperators.errorHandler().subscribe(
+      val => console.log(val),
+      error => console.error(error.message),
+      () => ('finished emitting all the values'),
     )
   }
 

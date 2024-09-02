@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { of, from, interval, Observable, take, merge, concat } from 'rxjs';
+import { of, from, interval, Observable, take, merge, concat, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -10,10 +10,7 @@ export class RxjsOperatorsService {
 
   data$ = new Observable()
 
-  constructor() { 
-    // declares the of observable to create a stream of number observable data
-    // this.source$ = of(1, 2, 3);
-   }
+  constructor() { }
 
   //  creates and returns an observable using the of creation observable
   // this operator is usually used to create a sequence of value or single values
@@ -42,11 +39,14 @@ export class RxjsOperatorsService {
     
    }
 
-  //  rxjsSubscription () {
-  //   this.source$.subscribe(
-  //     value => console.log(value),
-  //     error => console.log(error.message),
-  //     () => console.log('completed...')
-  //   )
-  //  }
+  //  emits an error after emitting a few values
+   errorHandler () {
+    const numbers$ = this.rxjsOf();
+    const error$ = throwError( new Error('An error occurred'));
+    const colors$ = this.rxjsFrom()
+    return merge(numbers$, error$, colors$);
+   }
+   
+
+
 }
